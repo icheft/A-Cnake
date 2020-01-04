@@ -21,7 +21,7 @@ Type `/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/
 Download **SFML** through terminal: 
 Type `brew install SFML`. 
 
-Download this repository, copy and paste `https://gitlab.com/icheft/snake.git` in your terminal. 
+Download this repository, copy and paste `git clone https://gitlab.com/icheft/snake.git` in your terminal. 
 
 It should create a folder name **snake**.
 
