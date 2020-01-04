@@ -3,6 +3,7 @@
 An uni year 1 final project for IM1003 Programming Design. The simple but fascinating game is developed all by ourselves with a little help from YouTube. Feel free to make it cooler. 
 
 ## To Do
+1. Separate main.cpp into different classes
 1. fruit time, num random
 2. place bomb, and your lenth will decrease
 3. win, lose, 平手, play again
