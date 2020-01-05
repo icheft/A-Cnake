@@ -158,9 +158,9 @@ int main()
     RenderWindow window(VideoMode(WIDTH, HEIGHT), "A Cnake");
     
     Texture texture_background, texture_player1, texture_player2, texture_fruit;
-    texture_background.loadFromFile("images/all-light-blue.png"); // default: all-dark-blue.png
-    texture_player1.loadFromFile("images/red.png");
-    texture_player2.loadFromFile("images/green.png");
+    texture_background.loadFromFile("images/grass.png"); // default: all-dark-blue.png
+    texture_player1.loadFromFile("images/blue.png");
+    texture_player2.loadFromFile("images/yellow.png");
     texture_fruit.loadFromFile("images/potion.png"); 
     
     Sprite background(texture_background);
