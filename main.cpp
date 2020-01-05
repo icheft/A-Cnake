@@ -55,16 +55,21 @@ struct Fruit
 Fruit f;
 struct Bomb
 {
-    int x[100];
-    int y[100];
-    int len;
+    int x[300];
+    int y[300];
+    int index;
     void init();
-}
+};
 Bomb b;
 
 void Bomb::init()
 {
-    x[0]
+    for(int i = 0;i < 300;i++)
+    {
+        x[i] = -1;
+        y[i] = -1;
+    }
+    index = 0;
 }
 
 
@@ -108,36 +113,60 @@ void Tick()
         f.y = rand() % H;
     }
     // generate bomb
+    static bool bomb_created = false;
     if(s1.bomb == true)
     {
-        b.x = rand() % W;
-        b.y = rand() % H;
+        // static bool bomb_created = false;
+        if (bomb_created == false && s1.len > 1)
+        {
+            b.x[b.index] = s1.x[s1.len - 1];
+            b.y[b.index] = s1.y[s1.len - 1];
+            b.index++;
+//            bomb_created = true;
+        }
         s1.bomb = false;
     }
+    
+//    if(s1.bomb == true)
+//    {
+//        b.x[b.index] = rand() % W;
+//        b.y[b.index] = rand() % H;
+//        b.index++;
+//        s1.bomb = false;
+//    }
     if(s2.bomb == true)
     {
-        b.x = rand() % W;
-        b.y = rand() % H;
+        b.x[b.index] = rand() % W;
+        b.y[b.index] = rand() % H;
+        b.index++;
         s2.bomb = false;
     }
     // collided with bomb
-    if((s1.x[0] == b.x) && (s1.y[0] == b.y))
+    for (int i = 0;i < b.index;i++)
     {
-        if(s1.len >=3)
-            s1.len -= 3;
-        else
-            s1.len = 0;
-        b.x = -1;
-        b.y = -1;
+        if((s1.x[0] == b.x[i]) && (s1.y[0] == b.y[i]))
+        {
+            if(s1.len >=3)
+                s1.len -= 3;
+            else
+                s1.len = 0;
+            b.x[i] = -1;
+            b.y[i] = -1;
+            bomb_created = false;
+        }
     }
-    if((s2.x[0] == b.x) && (s2.y[0] == b.y))
+    for (int i = 0;i < b.index;i++)
     {
-        if(s2.len >=3)
-            s2.len -= 3;
-        else
-            s2.len = 0;
-        b.x = -1;
-        b.y = -1;
+        if((s2.x[0] == b.x[i]) && (s2.y[0] == b.y[i]))
+        {
+            if(s2.len >=3)
+                s2.len -= 3;
+            else
+                s2.len = 0;
+            b.x[i] = -1;
+            b.y[i] = -1;
+            bomb_created = false;
+        }
     }
     // over map size
     if(s1.x[0] > W) s1.x[0] = 0;
@@ -192,7 +221,7 @@ int main()
 {
     s1.init1();
     s2.init2();
-    
+    b.init();
     // setting
     srand(time(0));
     RenderWindow window(VideoMode(WIDTH, HEIGHT), "A Cnake");
@@ -214,8 +243,6 @@ int main()
     float timer = 0, delay = 0.07; // adjusting delay will affect the speed // default = 0.07
     f.x = 10;
     f.y = 10;
-    b.x = -1;
-    b.y = -1;
     s1.bomb = false;
     s2.bomb = false;
     while(window.isOpen())
@@ -252,13 +279,13 @@ int main()
             if(s2.dir != up) s2.dir = down;
         
         //place bomb
-        if(b.x == -1 && b.y == -1)
-        {
-            if(Keyboard::isKeyPressed(Keyboard::L))
+        
+        if(Keyboard::isKeyPressed(Keyboard::L))
+            if(b.x[b.index] == -1 && b.y[b.index] == -1)
                 s1.bomb = true;
-            if(Keyboard::isKeyPressed(Keyboard::Z))
+        if(Keyboard::isKeyPressed(Keyboard::Z))
+            if(b.x[b.index] == -1 && b.y[b.index] == -1)
                 s2.bomb = true;
-        }
         // ===== until here =====
         
         
@@ -293,9 +320,11 @@ int main()
         fruit.setPosition(f.x * SIZE,  f.y * SIZE);
         window.draw(fruit);
         // draw bomb
-        bomb.setPosition(b.x * SIZE, b.y * SIZE);
-        window.draw(bomb);
-        
+        for (int i = 0;i < b.index;i++)
+        {
+            bomb.setPosition(b.x[i] * SIZE, b.y[i] * SIZE);
+            window.draw(bomb);
+        }
         window.display();
     }
     return 0;
