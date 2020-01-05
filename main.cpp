@@ -102,8 +102,25 @@ void Tick()
     {
         s1.len++;
         // generate new fruit
-        f.x = rand() % W;
-        f.y = rand() % H;
+        bool overlap = true;
+        while(overlap)
+        {
+            bool flag = false;
+            f.x = rand() % W;
+            f.y = rand() % H;
+            for (int i = 0; i < 300;i++)
+            {
+                if (f.x == b.x[i] && f.y == b.y[i])
+                {
+                    flag = true;
+                    break;
+                }
+            }
+            if (!flag)
+            {
+                overlap = false;
+            }
+        }
     }
     if((s2.x[0] == f.x) && (s2.y[0] == f.y))
     {
@@ -112,7 +129,7 @@ void Tick()
         f.x = rand() % W;
         f.y = rand() % H;
     }
-    // generate bomb
+    // generate bomb from snake's bottom
     static bool bomb_created = false;
     if(s1.bomb == true)
     {
@@ -126,7 +143,19 @@ void Tick()
         }
         s1.bomb = false;
     }
-    
+    if(s2.bomb == true)
+    {
+        // static bool bomb_created = false;
+        if (bomb_created == false && s2.len > 1)
+        {
+            b.x[b.index] = s2.x[s2.len - 1];
+            b.y[b.index] = s2.y[s2.len - 1];
+            b.index++;
+            //            bomb_created = true;
+        }
+        s2.bomb = false;
+    }
+    // generate random bomb
 //    if(s1.bomb == true)
 //    {
 //        b.x[b.index] = rand() % W;
@@ -134,13 +163,13 @@ void Tick()
 //        b.index++;
 //        s1.bomb = false;
 //    }
-    if(s2.bomb == true)
-    {
-        b.x[b.index] = rand() % W;
-        b.y[b.index] = rand() % H;
-        b.index++;
-        s2.bomb = false;
-    }
+//    if(s2.bomb == true)
+//    {
+//        b.x[b.index] = rand() % W;
+//        b.y[b.index] = rand() % H;
+//        b.index++;
+//        s2.bomb = false;
+//    }
     // collided with bomb
     for (int i = 0;i < b.index;i++)
     {
