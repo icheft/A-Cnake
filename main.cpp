@@ -96,10 +96,16 @@ void Tick()
         f.y = rand() % H;
     }
     // generate bomb
+    static bool bomb_created = false;
     if(s1.bomb == true)
     {
-        b.x = rand() % W;
-        b.y = rand() % H;
+        // static bool bomb_created = false;
+        if (bomb_created == false)
+        {
+            b.x = s1.x[s1.len - 1];
+            b.y = s1.y[s1.len - 1];
+            bomb_created = true;
+        }
         s1.bomb = false;
     }
     if(s2.bomb == true)
@@ -117,6 +123,7 @@ void Tick()
             s1.len = 0;
         b.x = -1;
         b.y = -1;
+        bomb_created = false;
     }
     if((s2.x[0] == b.x) && (s2.y[0] == b.y))
     {
@@ -126,6 +133,7 @@ void Tick()
             s2.len = 0;
         b.x = -1;
         b.y = -1;
+        bomb_created = false;
     }
     // over map size
     if(s1.x[0] > W) s1.x[0] = 0;
