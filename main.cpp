@@ -137,8 +137,14 @@ void Tick()
         // 側面撞頭
         else
         {
-            s1.len = 0;
-            s2.len = 0;
+            if(s1.len > s2.len) s2.len = 0;
+            else if (s1.len < s2.len) s1.len = 0;
+            else
+            {
+                // 平手
+                s1.len = 0;
+                s2.len = 0;
+            }
         }
     }
 }
