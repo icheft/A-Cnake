@@ -53,7 +53,19 @@ struct Fruit
     int y;
 };
 Fruit f;
-Fruit b;
+struct Bomb
+{
+    int x[100];
+    int y[100];
+    int len;
+    void init();
+}
+Bomb b;
+
+void Bomb::init()
+{
+    x[0]
+}
 
 
 void Tick()
