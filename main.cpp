@@ -487,9 +487,6 @@ void Tick()
             }
         }
     }
-<<<<<<< HEAD
-    // generate bomb
-=======
 //    if((s2.x[0] == f.x) && (s2.y[0] == f.y))
 //    {
 //        s2.len++;
@@ -498,37 +495,21 @@ void Tick()
 //        f.y = rand() % H;
 //    }
     // generate bomb from snake's bottom
->>>>>>> bombsssss
     static bool bomb_created = false;
     if(s1.bomb == true)
     {
         // static bool bomb_created = false;
-<<<<<<< HEAD
-        if (bomb_created == false)
-        {
-            b.x = s1.x[s1.len - 1];
-            b.y = s1.y[s1.len - 1];
-            bomb_created = true;
-=======
         if (bomb_created == false && s1.len > 1)
         {
             b.x[b.index] = s1.x[s1.len - 1];
             b.y[b.index] = s1.y[s1.len - 1];
             b.index++;
 //            bomb_created = true;
->>>>>>> bombsssss
         }
         s1.bomb = false;
     }
     if(s2.bomb == true)
     {
-<<<<<<< HEAD
-        if (bomb_created == false)
-        {
-            b.x = s2.x[s2.len - 1];
-            b.y = s2.y[s2.len - 1];
-            bomb_created = true;
-=======
         // static bool bomb_created = false;
         if (bomb_created == false && s2.len > 1)
         {
@@ -536,7 +517,6 @@ void Tick()
             b.y[b.index] = s2.y[s2.len - 1];
             b.index++;
             //            bomb_created = true;
->>>>>>> bombsssss
         }
         s2.bomb = false;
     }
@@ -588,24 +568,13 @@ void Tick()
         if((s1.x[0] == w.x[i]) && (s1.y[0] == w.y[i]))
         {
             s1.len = 0;
-<<<<<<< HEAD
-        b.x = -1;
-        b.y = -1;
-        bomb_created = false;
-=======
         }
->>>>>>> bombsssss
     }
     for(int i = 0;i < 25;i++)
     {
         if((s2.x[0] == w.x[i]) && (s2.y[0] == w.y[i]))
         {
             s2.len = 0;
-<<<<<<< HEAD
-        b.x = -1;
-        b.y = -1;
-        bomb_created = false;
-=======
         }
     }
     // collided with brick
@@ -622,7 +591,6 @@ void Tick()
         {
             s2.len = 0;
         }
->>>>>>> bombsssss
     }
     // over map size
     if(s1.x[0] > W) s1.x[0] = 0;
@@ -688,15 +656,15 @@ int main()
     RenderWindow window(VideoMode(WIDTH, HEIGHT), "A Cnake");
     
     Texture texture_background, texture_player1, texture_player2, texture_fruit, texture_bomb, texture_brick, texture_fruit2, texture_fruit3, texture_water;
-    texture_background.loadFromFile("images/grass.png");
-    texture_player1.loadFromFile("images/blue.png");
-    texture_player2.loadFromFile("images/yellow.png");
-    texture_fruit.loadFromFile("images/potion.png");
-    texture_bomb.loadFromFile("images/bomb.png");
-    texture_brick.loadFromFile("images/brick.png");
-    texture_fruit2.loadFromFile("images/white.png");
-    texture_fruit3.loadFromFile("images/pink.png");
-    texture_water.loadFromFile("images/all-light-blue.png");
+    texture_background.loadFromFile("resources/images/grass.png");
+    texture_player1.loadFromFile("resources/images/blue.png");
+    texture_player2.loadFromFile("resources/images/yellow.png");
+    texture_fruit.loadFromFile("resources/images/purple-potion.png");
+    texture_bomb.loadFromFile("resources/images/bomb.png");
+    texture_brick.loadFromFile("resources/images/brick.png");
+    texture_fruit2.loadFromFile("resources/images/white-potion.png");
+    texture_fruit3.loadFromFile("resources/images/pink-potion.png");
+    texture_water.loadFromFile("resources/images/water.png");
     
     Sprite background(texture_background);
     Sprite player1(texture_player1);
