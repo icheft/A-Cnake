@@ -1,2 +1,6 @@
 game
 *.o
+Snake.cpp
+Snake.hpp
+State.hpp
+Game.cpp
