@@ -718,7 +718,7 @@ int main()
         if(Keyboard::isKeyPressed(Keyboard::L))
             if(b.x[b.index] == -1 && b.y[b.index] == -1)
                 s1.bomb = true;
-        if(Keyboard::isKeyPressed(Keyboard::Z))
+        if(Keyboard::isKeyPressed(Keyboard::LShift))
             if(b.x[b.index] == -1 && b.y[b.index] == -1)
                 s2.bomb = true;
         // ===== until here =====
