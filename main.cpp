@@ -2,7 +2,7 @@
 #include <ctime>
 using namespace sf;
 
-const int SIZE = 15;
+const int SIZE = 15; // default: 15 --> 不用改
 const int W = 60, H = 50;
 const int WIDTH = SIZE * W;
 const int HEIGHT = SIZE * H;
@@ -186,11 +186,11 @@ int main()
     RenderWindow window(VideoMode(WIDTH, HEIGHT), "A Cnake");
     
     Texture texture_background, texture_player1, texture_player2, texture_fruit, texture_bomb;
-    texture_background.loadFromFile("images/all-dark-blue.png");
-    texture_player1.loadFromFile("images/red.png");
-    texture_player2.loadFromFile("images/green.png");
-    texture_fruit.loadFromFile("images/yellow.png");
-    texture_bomb.loadFromFile("images/white.png");
+    texture_background.loadFromFile("images/grass.png");
+    texture_player1.loadFromFile("images/blue.png");
+    texture_player2.loadFromFile("images/yellow.png");
+    texture_fruit.loadFromFile("images/potion.png");
+    texture_bomb.loadFromFile("images/bomb.png");
     
     Sprite background(texture_background);
     Sprite player1(texture_player1);
