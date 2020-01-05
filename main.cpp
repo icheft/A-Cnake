@@ -1,4 +1,6 @@
 #include <SFML/Graphics.hpp>
+#include <iostream>
+#include "Menu.hpp"
 #include <ctime>
 using namespace sf;
 
@@ -104,7 +106,7 @@ void Tick()
         {
             b.x = s1.x[s1.len - 1];
             b.y = s1.y[s1.len - 1];
-            bomb_created = true;
+            // bomb_created = true;
         }
         s1.bomb = false;
     }
@@ -114,7 +116,7 @@ void Tick()
         {
             b.x = s2.x[s2.len - 1];
             b.y = s2.y[s2.len - 1];
-            bomb_created = true;
+            // bomb_created = true;
         }
         s2.bomb = false;
     }
@@ -196,13 +198,16 @@ int main()
     // setting
     srand(time(0));
     RenderWindow window(VideoMode(WIDTH, HEIGHT), "A Cnake");
+
+    Menu menu(window.getSize().x, window.getSize().y);
+    
     
     Texture texture_background, texture_player1, texture_player2, texture_fruit, texture_bomb;
-    texture_background.loadFromFile("images/grass.png");
-    texture_player1.loadFromFile("images/blue.png");
-    texture_player2.loadFromFile("images/yellow.png");
-    texture_fruit.loadFromFile("images/potion.png");
-    texture_bomb.loadFromFile("images/bomb.png");
+    texture_background.loadFromFile("resources/images/grass.png");
+    texture_player1.loadFromFile("resources/images/blue.png");
+    texture_player2.loadFromFile("resources/images/yellow.png");
+    texture_fruit.loadFromFile("resources/images/potion.png");
+    texture_bomb.loadFromFile("resources/images/bomb.png");
     
     Sprite background(texture_background);
     Sprite player1(texture_player1);
@@ -218,6 +223,52 @@ int main()
     b.y = -1;
     s1.bomb = false;
     s2.bomb = false;
+
+    while(window.isOpen())
+    {
+        Event event;
+
+        while (window.pollEvent(event))
+        {
+            switch (event.type)
+            {
+            case Event::KeyReleased:
+                switch(event.key.code)
+                {
+                    case Keyboard::Up:
+                        menu.MoveUp();
+                        break;
+                    case Keyboard::Down:
+                        menu.MoveDown();
+                        break;
+                    case Keyboard::Return:
+                        switch(menu.GetPressedItem())
+                        {
+                        case 0:
+                            std::cout << "Play button has been pressed" << std::endl;
+                            break;
+                        case 1:
+                            std::cout << "Setting button has been pressed" << std::endl;
+                            break;
+                        case 2:
+                            window.close();
+                            break;
+                        }
+                        break;
+                }
+                break;
+            case Event::Closed:
+                window.close();
+
+                break;
+            }
+        }
+        window.clear();
+        menu.draw(window);
+        window.display();
+        
+    }
+    /*
     while(window.isOpen())
     {
         float time = clock.getElapsedTime().asSeconds();
@@ -229,6 +280,7 @@ int main()
         {
             if(e.type == Event::Closed)
                 window.close();
+            
         }
         
         // should be modified
@@ -298,6 +350,7 @@ int main()
         
         window.display();
     }
+    */
     return 0;
 }
 
