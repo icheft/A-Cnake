@@ -9,7 +9,7 @@ const int HEIGHT = SIZE * H;
 const int SNAKE_MAX_LEN = 100;
 const int SNAKE_START_LEN = 4;
 
-enum direction {up, left, right, down};
+enum direction {down, left, right, up};
 
 struct Snake
 {
@@ -28,7 +28,7 @@ void Snake::init1()
         x[i] = 5;
         y[i] = H / 2;
     }
-    dir = direction::right;
+    dir = right;
     len = SNAKE_START_LEN;
 }
 void Snake::init2()
@@ -38,7 +38,7 @@ void Snake::init2()
         x[i] = W - 5;
         y[i] = H / 2;
     }
-    dir = direction::left;
+    dir = left;
     len = SNAKE_START_LEN;
 }
 
@@ -67,15 +67,15 @@ void Tick()
         s2.y[i] = s2.y[i - 1];
     }
     
-    if(s1.dir == 0) s1.y[0] += 1; // up 
-    if(s1.dir == 1) s1.x[0] -= 1; // left
-    if(s1.dir == 2) s1.x[0] += 1; // right
-    if(s1.dir == 3) s1.y[0] -= 1; // down
+    if(s1.dir == down) s1.y[0] += 1; // down 
+    if(s1.dir == left) s1.x[0] -= 1; // left
+    if(s1.dir == right) s1.x[0] += 1; // right
+    if(s1.dir == up) s1.y[0] -= 1; // up
     
-    if(s2.dir == 0) s2.y[0] += 1;
-    if(s2.dir == 1) s2.x[0] -= 1;
-    if(s2.dir == 2) s2.x[0] += 1;
-    if(s2.dir == 3) s2.y[0] -= 1;
+    if(s2.dir == down) s2.y[0] += 1;
+    if(s2.dir == left) s2.x[0] -= 1;
+    if(s2.dir == right) s2.x[0] += 1;
+    if(s2.dir == up) s2.y[0] -= 1;
     
 
     // eat
@@ -163,7 +163,7 @@ int main()
     Sprite fruit(texture_fruit);
     
     Clock clock;
-    float timer = 0, delay = 0.05; // adjusting delay will affect the speed
+    float timer = 0, delay = 0.07; // adjusting delay will affect the speed // default = 0.07
     f.x = 10;
     f.y = 10;
     
@@ -182,45 +182,23 @@ int main()
         
         // should be modified
         if(Keyboard::isKeyPressed(Keyboard::Left))
-            if(s1.dir != 2)
-            {
-                s1.dir = 1;
-            }
+            if(s1.dir != right) s1.dir = left;
         if(Keyboard::isKeyPressed(Keyboard::Right))
-            if(s1.dir != 1)
-            {
-                s1.dir = 2;
-            }
+            if(s1.dir != left) s1.dir = right;
         if(Keyboard::isKeyPressed(Keyboard::Up))
-            if(s1.dir != 0)
-            {
-                s1.dir = 3;
-            }
+            if(s1.dir != down) s1.dir = up;
         if(Keyboard::isKeyPressed(Keyboard::Down))
-            if(s1.dir != 3)
-            {
-                s1.dir = 0;
-            }
+            if(s1.dir != up) s1.dir = down;
+
+
         if(Keyboard::isKeyPressed(Keyboard::A))
-            if(s2.dir != 2)
-            {
-                s2.dir = 1;
-            }
+            if(s2.dir != right) s2.dir = left;
         if(Keyboard::isKeyPressed(Keyboard::D))
-            if(s2.dir != 1)
-            {
-                s2.dir = 2;
-            }
+            if(s2.dir != left) s2.dir = right;
         if(Keyboard::isKeyPressed(Keyboard::W))
-            if(s2.dir != 0)
-            {
-                s2.dir = 3;
-            }
+            if(s2.dir != down) s2.dir = up;
         if(Keyboard::isKeyPressed(Keyboard::S))
-            if(s2.dir != 3)
-            {
-                s2.dir = 0;
-            }
+            if(s2.dir != up) s2.dir = down;
         // ===== until here =====
         
         
