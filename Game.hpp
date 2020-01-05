@@ -39,7 +39,7 @@ void Snake::init1()
     for(int i = 0; i < SNAKE_MAX_LEN; i++)
     {
         x[i] = 5;
-        y[i] = H / 2;
+        y[i] = H / 2 - 4;
     }
     dir = right;
     len = SNAKE_START_LEN;
@@ -49,7 +49,7 @@ void Snake::init2()
     for(int i = 0; i < SNAKE_MAX_LEN; i++)
     {
         x[i] = W - 5;
-        y[i] = H / 2;
+        y[i] = H / 2 + 4;
     }
     dir = left;
     len = SNAKE_START_LEN;
@@ -689,7 +689,7 @@ void run()
     Sprite water(texture_water);
     
     Clock clock;
-    float timer = 0, delay = 0.05; // adjusting delay will affect the speed // default = 0.07
+    float timer = 0, delay = 0.07; // adjusting delay will affect the speed // default = 0.07
     s1.bomb = false;
     s2.bomb = false;
     while(window.isOpen())
@@ -735,7 +735,7 @@ void run()
                 s2.bomb = true;
         // ===== until here =====
         bool pause = false;
-        if(Keyboard::isKeyPressed(Keyboard::Return)) pause = true;
+        if(Keyboard::isKeyPressed(Keyboard::BackSpace)) pause = true;
             
         
         if(timer > delay)
@@ -806,7 +806,7 @@ void run()
                 timer = 0;
                 static int cnt = 1;
                 std::cout << "Game paused " << cnt++ << std::endl;
-                if(Keyboard::isKeyPressed(Keyboard::Return)) {
+                if(Keyboard::isKeyPressed(Keyboard::BackSpace)) {
                     pause = false;
                     break;
                 }
@@ -817,4 +817,7 @@ void run()
         }
         window.display();
     }
+    // load image --> player whom wins
+    // 
+
 }
