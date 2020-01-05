@@ -19,6 +19,7 @@ struct Snake
     int len;
     void init1();
     void init2();
+    bool bomb;
 };
 
 void Snake::init1()
@@ -52,6 +53,7 @@ struct Fruit
     int y;
 };
 Fruit f;
+Fruit b;
 
 
 void Tick()
@@ -67,7 +69,7 @@ void Tick()
         s2.y[i] = s2.y[i - 1];
     }
     
-    if(s1.dir == down) s1.y[0] += 1; // down 
+    if(s1.dir == down) s1.y[0] += 1; // down
     if(s1.dir == left) s1.x[0] -= 1; // left
     if(s1.dir == right) s1.x[0] += 1; // right
     if(s1.dir == up) s1.y[0] -= 1; // up
@@ -77,7 +79,7 @@ void Tick()
     if(s2.dir == right) s2.x[0] += 1;
     if(s2.dir == up) s2.y[0] -= 1;
     
-
+    
     // eat
     if((s1.x[0] == f.x) && (s1.y[0] == f.y))
     {
@@ -93,7 +95,38 @@ void Tick()
         f.x = rand() % W;
         f.y = rand() % H;
     }
-    
+    // generate bomb
+    if(s1.bomb == true)
+    {
+        b.x = rand() % W;
+        b.y = rand() % H;
+        s1.bomb = false;
+    }
+    if(s2.bomb == true)
+    {
+        b.x = rand() % W;
+        b.y = rand() % H;
+        s2.bomb = false;
+    }
+    // collided with bomb
+    if((s1.x[0] == b.x) && (s1.y[0] == b.y))
+    {
+        if(s1.len >=3)
+            s1.len -= 3;
+        else
+            s1.len = 0;
+        b.x = -1;
+        b.y = -1;
+    }
+    if((s2.x[0] == b.x) && (s2.y[0] == b.y))
+    {
+        if(s2.len >=3)
+            s2.len -= 3;
+        else
+            s2.len = 0;
+        b.x = -1;
+        b.y = -1;
+    }
     // over map size
     if(s1.x[0] > W) s1.x[0] = 0;
     if(s1.x[0] < 0) s1.x[0] = W;
@@ -107,7 +140,7 @@ void Tick()
     
     // self-collision
     for(int i = 1; i < s1.len; i++)
-       if(s1.x[0] == s1.x[i] && s1.y[0] == s1.y[i])
+        if(s1.x[0] == s1.x[i] && s1.y[0] == s1.y[i])
             s1.len = 0;
     for(int i = 1; i < s2.len; i++)
         if(s2.x[0] == s2.x[i] && s2.y[0] == s2.y[i])
@@ -137,14 +170,8 @@ void Tick()
         // 側面撞頭
         else
         {
-            if(s1.len > s2.len) s2.len = 0;
-            else if (s1.len < s2.len) s1.len = 0;
-            else
-            {
-                // 平手
-                s1.len = 0;
-                s2.len = 0;
-            }
+            s1.len = 0;
+            s2.len = 0;
         }
     }
 }
@@ -153,26 +180,32 @@ int main()
 {
     s1.init1();
     s2.init2();
+    
     // setting
     srand(time(0));
     RenderWindow window(VideoMode(WIDTH, HEIGHT), "A Cnake");
     
-    Texture texture_background, texture_player1, texture_player2, texture_fruit;
-    texture_background.loadFromFile("images/grass.png"); // default: all-dark-blue.png
-    texture_player1.loadFromFile("images/blue.png");
-    texture_player2.loadFromFile("images/yellow.png");
-    texture_fruit.loadFromFile("images/potion.png"); 
+    Texture texture_background, texture_player1, texture_player2, texture_fruit, texture_bomb;
+    texture_background.loadFromFile("images/all-dark-blue.png");
+    texture_player1.loadFromFile("images/red.png");
+    texture_player2.loadFromFile("images/green.png");
+    texture_fruit.loadFromFile("images/yellow.png");
+    texture_bomb.loadFromFile("images/white.png");
     
     Sprite background(texture_background);
     Sprite player1(texture_player1);
     Sprite player2(texture_player2);
     Sprite fruit(texture_fruit);
+    Sprite bomb(texture_bomb);
     
     Clock clock;
     float timer = 0, delay = 0.07; // adjusting delay will affect the speed // default = 0.07
     f.x = 10;
     f.y = 10;
-    
+    b.x = -1;
+    b.y = -1;
+    s1.bomb = false;
+    s2.bomb = false;
     while(window.isOpen())
     {
         float time = clock.getElapsedTime().asSeconds();
@@ -195,8 +228,8 @@ int main()
             if(s1.dir != down) s1.dir = up;
         if(Keyboard::isKeyPressed(Keyboard::Down))
             if(s1.dir != up) s1.dir = down;
-
-
+        
+        
         if(Keyboard::isKeyPressed(Keyboard::A))
             if(s2.dir != right) s2.dir = left;
         if(Keyboard::isKeyPressed(Keyboard::D))
@@ -205,6 +238,15 @@ int main()
             if(s2.dir != down) s2.dir = up;
         if(Keyboard::isKeyPressed(Keyboard::S))
             if(s2.dir != up) s2.dir = down;
+        
+        //place bomb
+        if(b.x == -1 && b.y == -1)
+        {
+            if(Keyboard::isKeyPressed(Keyboard::L))
+                s1.bomb = true;
+            if(Keyboard::isKeyPressed(Keyboard::Z))
+                s2.bomb = true;
+        }
         // ===== until here =====
         
         
@@ -238,7 +280,9 @@ int main()
         // fruit color
         fruit.setPosition(f.x * SIZE,  f.y * SIZE);
         window.draw(fruit);
-
+        // draw bomb
+        bomb.setPosition(b.x * SIZE, b.y * SIZE);
+        window.draw(bomb);
         
         window.display();
     }
