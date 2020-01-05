@@ -110,8 +110,12 @@ void Tick()
     }
     if(s2.bomb == true)
     {
-        b.x = rand() % W;
-        b.y = rand() % H;
+        if (bomb_created == false)
+        {
+            b.x = s2.x[s2.len - 1];
+            b.y = s2.y[s2.len - 1];
+            bomb_created = true;
+        }
         s2.bomb = false;
     }
     // collided with bomb
