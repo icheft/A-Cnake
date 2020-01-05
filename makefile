@@ -1,7 +1,7 @@
 run: main.o Menu.o
 	@g++ main.o Menu.o -o game -lsfml-window -lsfml-graphics -lsfml-system
 
-main.o: main.cpp
+main.o: main.cpp Game.hpp
 	g++ main.cpp -c
 
 Menu.o: Menu.cpp Menu.hpp
