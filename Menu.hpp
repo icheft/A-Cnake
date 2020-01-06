@@ -2,7 +2,7 @@
 #include <SFML/Graphics.hpp>
 using namespace sf;
 
-#define MAX_NUMBER_OF_ITEMS 2
+#define MAX_NUMBER_OF_ITEMS 3
 
 class Menu
 {

@@ -19,14 +19,14 @@ Menu::Menu(float width, float height)
     menu[0].setString("Play");
     menu[0].setPosition(Vector2f(width / 2 - 80, height / (MAX_NUMBER_OF_ITEMS + 2) * 2));
 
-    // menu[].setFont(font);
-    // menu[].setColor(Color(255, 255, 255, 180));
-    // menu[].setString("Settings");
-    // menu[].setPosition(Vector2f(width / 2 - 100, height / (MAX_NUMBER_OF_ITEMS + 1) * 2));
     menu[1].setFont(font);
     menu[1].setColor(Color(255, 255, 255, 180));
-    menu[1].setString("Quit");
-    menu[1].setPosition(Vector2f(width / 2 - 80, height / (MAX_NUMBER_OF_ITEMS + 2) * 3 - 100));
+    menu[1].setString("Instructions");
+    menu[1].setPosition(Vector2f(width / 2 - 100, height / (MAX_NUMBER_OF_ITEMS + 2) * 3 - 100));
+    menu[2].setFont(font);
+    menu[2].setColor(Color(255, 255, 255, 180));
+    menu[2].setString("Quit");
+    menu[2].setPosition(Vector2f(width / 2 - 80, height / (MAX_NUMBER_OF_ITEMS + 2) * 4 - 100));
 
     selectedItemIndex = 0;
 }

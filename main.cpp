@@ -3,6 +3,7 @@
 #include <iostream>
 #include "Menu.hpp"
 #include "Game.hpp"
+#include "Info.hpp"
 #include <ctime>
 using namespace sf;
 
@@ -22,6 +23,7 @@ int main()
     RenderWindow window(VideoMode(WIDTH, HEIGHT), "A Cnake");
 
     Menu menu(window.getSize().x, window.getSize().y);
+    Info info(window.getSize().x, window.getSize().y);
     Music music;
     if (!music.openFromFile("resources/audio/opening-funky.ogg"))
         return -1; // error
@@ -48,12 +50,13 @@ int main()
     enter.setVolume(50);
     enter.setBuffer(bEnter);
 
-menuLabel:
+// menuLabel:
     while(window.isOpen())
     {
         Event event;
         Clock clock;
         float timer = 0, limit = 0.3;
+    
 
         while (window.pollEvent(event))
         {
@@ -89,6 +92,19 @@ menuLabel:
                             window.setVisible(true);
                             break;
                         case 1:
+                            std::cout << "Instruction button has been pressed" << std::endl;
+                            window.setVisible(false);
+                            enter.play();
+                            while (timer < limit)
+                            {
+                                float time = clock.getElapsedTime().asSeconds();
+                                clock.restart();
+                                timer += time;
+                            }
+                            info.info_state();
+                            window.setVisible(true);
+                            break;
+                        case 2:
                             leave.play();
                             while (timer < limit)
                             {

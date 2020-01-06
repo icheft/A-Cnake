@@ -81,7 +81,13 @@
 			"vector": "cpp",
 			"*.tcc": "cpp",
 			"memory_resource": "cpp",
-			"cinttypes": "cpp"
+			"cinttypes": "cpp",
+			"list": "cpp",
+			"set": "cpp",
+			"strstream": "cpp",
+			"typeindex": "cpp",
+			"variant": "cpp",
+			"cfenv": "cpp"
 		}
 	}
 }
