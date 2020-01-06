@@ -838,6 +838,12 @@ void run()
     Sound bombPlanted;
     bombPlanted.setVolume(50);
     bombPlanted.setBuffer(buffer);
+    SoundBuffer buffer2;
+    if (!buffer2.loadFromFile("resources/audio/pop.wav")) 
+        return;
+    Sound pop;
+    pop.setVolume(50);
+    pop.setBuffer(buffer2);
 
 
     
@@ -891,7 +897,10 @@ void run()
             }
         // ===== until here =====
         bool pause = false;
-        if(Keyboard::isKeyPressed(Keyboard::BackSpace)) pause = true;
+        if(Keyboard::isKeyPressed(Keyboard::BackSpace)) {
+            pause = true;
+            pop.play();
+        }
             
         int checkFlag = check(s1, s2);
         if(timer > delay)
@@ -980,7 +989,10 @@ void run()
             timer += time;
             static int cnt = 1;
             
-            if(Keyboard::isKeyPressed(Keyboard::BackSpace))pause = false;
+            if(Keyboard::isKeyPressed(Keyboard::BackSpace)){
+                pause = false;
+                pop.play();
+            }
             if(timer > delay)
             {
                 std::cout << "Game paused " << cnt++ << std::endl;
