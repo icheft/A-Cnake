@@ -3,7 +3,7 @@
 #include <SFML/Audio.hpp>
 using namespace sf;
 
-#define MAX_NUM_OF_PAGES 2
+#define MAX_NUM_OF_PAGES 3
 
 class Info
 {
@@ -22,8 +22,8 @@ public:
     void info_state();
 
     void draw(RenderWindow &window, Sprite &page);
-    int prevPage();
-    int nextPage();
+    void prevPage();
+    void nextPage();
     // int loadFile() {return selectedPageIndex;};
 
 };

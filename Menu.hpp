@@ -11,6 +11,7 @@ private:
     Font font;
     Text menu[MAX_NUMBER_OF_ITEMS];
     Text title;
+    Texture bg_texture;
 
 public:
     Menu(float width, float height);

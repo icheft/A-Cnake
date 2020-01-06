@@ -1,4 +1,5 @@
 #include "Info.hpp"
+#include <iostream>
 
 
 Info::Info(float width, float height)
@@ -8,51 +9,23 @@ Info::Info(float width, float height)
     //     // handle error
     // }
 
-    if (!pages_texture[0].loadFromFile("resources/images/player1wins.png"))
+    if (!pages_texture[0].loadFromFile("resources/images/instra1.png"))
     {
         // handle error
     }
-    if (!pages_texture[1].loadFromFile("resources/images/player2wins.png"))
+    if (!pages_texture[1].loadFromFile("resources/images/instra2.png"))
+    {
+        // handle error
+    }
+    if (!pages_texture[2].loadFromFile("resources/images/instra3.png"))
     {
         // handle error
     }
 
     pages[0].setTexture(pages_texture[0]);
     pages[1].setTexture(pages_texture[1]);
-    /*
-
-    Sprite p1(texture_p1win);
-    Sprite p2(texture_p2win);
-    Sprite tie(texture_tie);
-    if (playerID == 1) window.draw(p1);
-    else if (playerID == 2) window.draw(p2);
-    else if (playerID == 3) window.draw(tie);
-    // window.draw(title);
+    pages[2].setTexture(pages_texture[2]);
     
-    window.display();
-    Clock clock;
-    float timer = 0, limit = 1.5;
-    while (timer < limit)
-    {
-        float time = clock.getElapsedTime().asSeconds();
-        clock.restart();
-        timer += time;
-    }
-    
-    */
-    // pages[0].setFont(font);
-    // pages[0].setColor(Color(254, 255, 212, 255));
-    // pages[0].setString("Play");
-    // pages[0].setPosition(Vector2f(width / 2 - 80, height / (MAX_NUMBER_OF_ITEMS + 2) * 2));
-
-    // pages[].setFont(font);
-    // pages[].setColor(Color(255, 255, 255, 180));
-    // pages[].setString("Settings");
-    // pages[].setPosition(Vector2f(width / 2 - 100, height / (MAX_NUMBER_OF_ITEMS + 1) * 2));
-    // pages[1].setFont(font);
-    // pages[1].setColor(Color(255, 255, 255, 180));
-    // pages[1].setString("Quit");
-    // pages[1].setPosition(Vector2f(width / 2 - 80, height / (MAX_NUMBER_OF_ITEMS + 2) * 3 - 100));
 
     selectedPageIndex = 0;
 }
@@ -67,50 +40,125 @@ void Info::info_state()
     const int W = 60, H = 50; // 60, 50
     const int WIDTH = SIZE * W;
     const int HEIGHT = SIZE * H;
+    
+    
     SoundBuffer buffer;
     if (!buffer.loadFromFile("resources/audio/pop.wav")) 
         return;
     Sound pop;
     pop.setVolume(50);
     pop.setBuffer(buffer);
+    SoundBuffer bLeave;
+    if (!bLeave.loadFromFile("resources/audio/option.wav")) 
+        return;
+    Sound leave;
+    leave.setVolume(50);
+    leave.setBuffer(bLeave);
     RenderWindow window(VideoMode(WIDTH, HEIGHT), "A Cnake");
-
+    // int pageIndex = 1;
     while(window.isOpen())
     {
         Event event;
-        int pageIndex = 0;
+        Clock clock;
+        float timer = 0, limit = 0.3;
+        
 
-        while (window.pollEvent(event))
+        while(window.pollEvent(event))
         {
             switch (event.type)
             {
             case Event::KeyReleased:
-                switch(event.key.code)
+                switch (event.key.code)
                 {
-                    case Keyboard::Left:
-                        window.clear();
-                        pop.play();
-                        pageIndex = prevPage();
-                        break;
-                    case Keyboard::Right:
-                        pop.play();
-                        pageIndex = nextPage();
-                        break;
-                    case Keyboard::Space:
-                        window.close();
-                        break;
+                case Keyboard::Left:
+                    pop.play();
+                    if (selectedPageIndex - 1 >= 0) selectedPageIndex--;
+                    break;
+                case Keyboard::Right:
+                    pop.play();
+                    // nextPage();
+                    if (selectedPageIndex + 1 < MAX_NUM_OF_PAGES) selectedPageIndex++;
+                    break;
+                case Keyboard::Space:
+                    leave.play();
+                    while (timer < limit)
+                    {
+                        float time = clock.getElapsedTime().asSeconds();
+                        clock.restart();
+                        timer += time;
+                    }
+                            
+                    window.close();
+                    break;
                 }
                 break;
             case Event::Closed:
                 window.close();
                 break;
             }
-            window.clear();
-            draw(window, pages[pageIndex]);
-            window.display();
-    }
+        }
+        // if(Keyboard::isKeyPressed(Keyboard::Left)) 
+        // {
+            
+        //     std::cout << "::" << selectedPageIndex << std::endl;
+        // }
+        // else if (Keyboard::isKeyPressed(Keyboard::Right))
+        // {
+        //     pop.play();
+        //     // nextPage();
+        //     if (selectedPageIndex + 1 < MAX_NUM_OF_PAGES) selectedPageIndex++;
+        // }
+        // else if (Keyboard::isKeyPressed(Keyboard::Space))
+        // {
+        //     leave.play();
+        //     while (timer < limit)
+        //     {
+        //         float time = clock.getElapsedTime().asSeconds();
+        //         clock.restart();
+        //         timer += time;
+        //     }
+                            
+        //     window.close();
+        // }
+        // std::cout << pageIndex << std::endl;
+        window.clear();
+        draw(window, pages[selectedPageIndex]);
+        window.display();
+
+    //     while (window.pollEvent(event))
+    //     {
+    //         switch (event.type)
+    //         {
+    //         case Event::KeyReleased:
+    //             switch(event.key.code)
+    //             {
+    //                 case Keyboard::Left:
+    //                     pop.play();
+    //                     pageIndex = prevPage();
+    //                     // draw(window, pages[pageIndex]);
+    //                     break;
+    //                 case Keyboard::Right:
+    //                     pop.play();
+    //                     pageIndex = nextPage();
+    //                     // window.clear();
+    //                     // draw(window, pages[pageIndex]);
+    //                     break;
+    //                 case Keyboard::Space:
+    //                     window.close();
+    //                     break;
+    //             }
+    //             break;
+    //         case Event::Closed:
+    //             window.close();
+    //             break;
+    //         }
+    //         // window.clear();
+    //         window.clear();
+    //         this->draw(window, pages[pageIndex]);
+    //         window.display();
+    // }
     
-    window.display();
+        // window.display();
     
     }
 }
@@ -126,23 +174,28 @@ void Info::draw(RenderWindow &window, Sprite &page)
     // }
 }
 
-int Info::prevPage()
+void Info::prevPage()
 {
     if (selectedPageIndex - 1 >= 0)
     {
-        return (--selectedPageIndex);
+        selectedPageIndex--;
+        std::cout << selectedPageIndex << std::endl;
+        // return selectedPageIndex;
     }
-    else return selectedPageIndex;
+    // else return selectedPageIndex;
 }
 
-int Info::nextPage()
+void Info::nextPage()
 {
     if (selectedPageIndex + 1 < MAX_NUM_OF_PAGES)
     {
         // pages[selectedItemIndex].setColor(Color(255, 255, 255, 180));
         // selectedItemIndex++;
         // pages[selectedItemIndex].setColor(Color(254, 255, 212, 255));
-        return (++selectedPageIndex);
+        selectedPageIndex++;
+        std::cout << selectedPageIndex << std::endl;
+        return;
+        // return selectedPageIndex;
     }
-    else return selectedPageIndex;
+    // else return selectedPageIndex;
 }

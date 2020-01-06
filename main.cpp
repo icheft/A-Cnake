@@ -49,6 +49,12 @@ int main()
     Sound enter;
     enter.setVolume(50);
     enter.setBuffer(bEnter);
+    SoundBuffer bOption;
+    if (!bOption.loadFromFile("resources/audio/option.wav")) 
+        return -1;
+    Sound option;
+    option.setVolume(50);
+    option.setBuffer(bOption);
 
 // menuLabel:
     while(window.isOpen())
@@ -94,7 +100,7 @@ int main()
                         case 1:
                             std::cout << "Instruction button has been pressed" << std::endl;
                             window.setVisible(false);
-                            enter.play();
+                            option.play();
                             while (timer < limit)
                             {
                                 float time = clock.getElapsedTime().asSeconds();
