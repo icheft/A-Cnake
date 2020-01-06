@@ -3,11 +3,24 @@
 An uni year 1 final project for IM1003 Programming Design. The simple but fascinating game is developed all by ourselves with a little help from YouTube. Feel free to make it cooler. 
 
 ## To Do
+### Main Game: 
 1. Separate main.cpp into different classes
-1. fruit time, num random
+2. win, lose, 平手, play again windows
+    + Add player 1 (blue snake) wins
+    + Add player 2 (yellow snake) wins
+    + Add Fair play
+    + Play again button(?)
+3. Add sound effects
+4. Add pause state
+
+### V2 or later: 
+1. Settings
+   1. sound on/off
+   2. speed
 2. place bomb, and your lenth will decrease
-3. win, lose, 平手, play again
-4.
+3. Single player mode
+4. connected through server
+
 
 ## Build
 ### macOS
