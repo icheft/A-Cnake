@@ -2,24 +2,31 @@
 
 Menu::Menu(float width, float height)
 {
-    if (!font.loadFromFile("resources/fonts/cute-pixel.ttf"))
+    if (!font.loadFromFile("resources/fonts/prstartk.ttf"))
     {
         // handle error
     }
+    
+    title.setFont(font);
+    title.setColor(Color(255, 211, 92, 250));
+    title.setString("A Cnake");
+    title.setCharacterSize(60);
+    // title.setScale(Vector2f(2, 2));
+    title.setPosition(Vector2f(width / 2 - 200, height / (MAX_NUMBER_OF_ITEMS + 2) * 1));
+
     menu[0].setFont(font);
     menu[0].setColor(Color(254, 255, 212, 255));
     menu[0].setString("Play");
-    menu[0].setPosition(Vector2f(width / 2 - 100, height / (MAX_NUMBER_OF_ITEMS + 1) * 1));
+    menu[0].setPosition(Vector2f(width / 2 - 80, height / (MAX_NUMBER_OF_ITEMS + 2) * 2));
 
+    // menu[].setFont(font);
+    // menu[].setColor(Color(255, 255, 255, 180));
+    // menu[].setString("Settings");
+    // menu[].setPosition(Vector2f(width / 2 - 100, height / (MAX_NUMBER_OF_ITEMS + 1) * 2));
     menu[1].setFont(font);
     menu[1].setColor(Color(255, 255, 255, 180));
-    menu[1].setString("Settings");
-    menu[1].setPosition(Vector2f(width / 2 - 100, height / (MAX_NUMBER_OF_ITEMS + 1) * 2));
-
-    menu[2].setFont(font);
-    menu[2].setColor(Color(255, 255, 255, 180));
-    menu[2].setString("Quit");
-    menu[2].setPosition(Vector2f(width / 2 - 100, height / (MAX_NUMBER_OF_ITEMS + 1) * 3));
+    menu[1].setString("Quit");
+    menu[1].setPosition(Vector2f(width / 2 - 80, height / (MAX_NUMBER_OF_ITEMS + 2) * 3 - 100));
 
     selectedItemIndex = 0;
 }
@@ -30,6 +37,8 @@ Menu::~Menu()
 
 void Menu::draw(RenderWindow &window)
 {
+    window.clear(Color(128, 124, 115, 255));
+    window.draw(title);
     for (int i = 0; i < MAX_NUMBER_OF_ITEMS; i++)
     {
         window.draw(menu[i]);

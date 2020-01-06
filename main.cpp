@@ -15,7 +15,7 @@ using namespace sf;
 
 int main()
 {
-    
+    Image image;
     // setting
     srand(time(0));
     RenderWindow window(VideoMode(WIDTH, HEIGHT), "A Cnake");
@@ -23,7 +23,7 @@ int main()
     Menu menu(window.getSize().x, window.getSize().y);
     
 
-
+menuLabel:
     while(window.isOpen())
     {
         Event event;
@@ -50,12 +50,15 @@ int main()
                             run();
                             break;
                         case 1:
-                            std::cout << "Setting button has been pressed" << std::endl;
+                            window.close();
+                            // if (!(image.loadFromFile("resources/images/yellow.png")))
+                            //         std::cout << "Cannot load image";
+                            // if (Keyboard::isKeyPressed(Keyboard::Space)) /* goto menuLabel */ std::cout << "hello" << std::endl;
                             // to be modified
                             break;
-                        case 2:
-                            window.close();
-                            break;
+                        // case 2:
+                        //     window.close();
+                        //     break;
                         }
                         break;
                 }
