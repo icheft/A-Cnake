@@ -872,7 +872,7 @@ void run()
         
         
         if(Keyboard::isKeyPressed(Keyboard::A))
-        {if(s1.dir != right) s1.dir = left;}
+            {if(s2.dir != right) s2.dir = left;}
         else if(Keyboard::isKeyPressed(Keyboard::D))
             if(s2.dir != left) s2.dir = right;
         if(Keyboard::isKeyPressed(Keyboard::W))
