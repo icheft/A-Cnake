@@ -672,43 +672,44 @@ int check(Snake s1, Snake s2)
 
 void dead(int playerID, RenderWindow &window)
 {
-    // Texture texture_p1win, texture_p2win, texture_tie;
-    // texture_p1win.loadFromFile("resources/images/player1wins.png");
-    // texture_p2win.loadFromFile("resources/images/player2wins.png");
-    // texture_tie.loadFromFile("resources/images/tie.png");
+    Texture texture_p1win, texture_p2win, texture_tie;
+    texture_p1win.loadFromFile("resources/images/player1wins.png");
+    texture_p2win.loadFromFile("resources/images/player2wins.png");
+    texture_tie.loadFromFile("resources/images/tie.png");
 
-    // Sprite p1(texture_p1win);
-    // Sprite p2(texture_p2win);
-    // Sprite tie(texture_tie);
-    Event event;
-    Text title;
-    Font font;
-    if (!font.loadFromFile("resources/fonts/prstartk.ttf"))
-    {
-        // handle error
-    }
-    title.setFont(font);
-    title.setColor(Color(255, 211, 92, 250));
-    // title.setString("A Cnake");
-    title.setCharacterSize(60);
-    // title.setScale(Vector2f(2, 2));
-    title.setPosition(Vector2f(WIDTH / 2 - 270, HEIGHT / 2 - 100));
+    Sprite p1(texture_p1win);
+    Sprite p2(texture_p2win);
+    Sprite tie(texture_tie);
+    // Event event;
+    // Text title;
+    // Font font;
+    // if (!font.loadFromFile("resources/fonts/prstartk.ttf"))
+    // {
+    //     // handle error
+    // }
+    // title.setFont(font);
+    // title.setColor(Color(255, 211, 92, 250));
+    // // title.setString("A Cnake");
+    // title.setCharacterSize(60);
+    // // title.setScale(Vector2f(2, 2));
+    // title.setPosition(Vector2f(WIDTH / 2 - 270, HEIGHT / 2 - 100));
 
-    window.clear(Color(128, 124, 115, 255));
+    // window.clear(Color(128, 124, 115, 255));
     
-    if (playerID == 1) {
-        title.setString("Player 1\n\n Wins!");
-    }
-    else if (playerID == 2) {
-        title.setString("Player 2\n\n Wins!");
-    }
-    else if (playerID == 3){
-        title.setString("Fair\n\n Play!");
-    }
-    // if (playerID == 1) window.draw(p1);
-    // else if (playerID == 2) window.draw(p2);
-    // else if (playerID == 3) window.draw(tie);
-    window.draw(title);
+    // if (playerID == 1) {
+    //     title.setString("Player 1\n\n Wins!");
+    // }
+    // else if (playerID == 2) {
+    //     title.setString("Player 2\n\n Wins!");
+    // }
+    // else if (playerID == 3){
+    //     title.setString("Fair\n\n Play!");
+    // }
+    if (playerID == 1) window.draw(p1);
+    else if (playerID == 2) window.draw(p2);
+    else if (playerID == 3) window.draw(tie);
+    // window.draw(title);
+    
     window.display();
     Clock clock;
     float timer = 0, limit = 1.5;
