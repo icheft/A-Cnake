@@ -578,9 +578,13 @@ void Tick()
         }
     }
     // collided with water
-    for(int i = 0;i < 25;i++)
+    for(int i = 0; i < 25 ;i++)
     {
-        if((s1.x[0] == w.x[i]) && (s1.y[0] == w.y[i]))
+        // if((s1.len > 2) && (s1.x[0] == w.x[i]) && (s1.y[0] == w.y[i]) && (s1.x[1] == w.x[i]) && (s1.y[1] == w.y[i]) && (s1.x[2] == w.y[i]) && (s1.y[2] == w.y[i]))
+        // {
+        //     s1.len = 0;
+        // }
+        /* else */ if ((s1.x[0] == w.x[i]) && (s1.y[0] == w.y[i])) 
         {
             s1.len = 0;
         }
@@ -654,6 +658,15 @@ void Tick()
             s2.len = 0;
         }
     }
+}
+
+int check(Snake s1, Snake s2)
+{
+    int playerID = 0;
+    if (s1.len == 0) return playerID = 2;
+    else if (s2.len == 0) return playerID = 1;
+    else return playerID;
+
 }
 
 void run()
@@ -742,6 +755,15 @@ void run()
         {
             timer = 0;
             Tick();
+            int checkFlag = check(s1, s2);
+            if (checkFlag == 1) {
+                std::cout << "Player 1 wins" << std::endl;
+                pause = true;
+            }
+            else if (checkFlag == 2) {
+                std::cout << "Player 2 wins" << std::endl;
+                pause = true;
+            }
         }
         
         window.clear();
@@ -799,21 +821,23 @@ void run()
             window.draw(bomb);
         }
         
+        
         while (pause)
         {
-            if(timer > delay)
-            {
-                timer = 0;
-                static int cnt = 1;
-                std::cout << "Game paused " << cnt++ << std::endl;
-                if(Keyboard::isKeyPressed(Keyboard::BackSpace)) {
-                    pause = false;
-                    break;
-                }
-            }
+
             time = clock.getElapsedTime().asSeconds();
             clock.restart();
             timer += time;
+            static int cnt = 1;
+            
+            if(Keyboard::isKeyPressed(Keyboard::BackSpace))pause = false;
+            if(timer > delay)
+            {
+                std::cout << "Game paused " << cnt++ << std::endl;
+                timer = 0;
+                if (pause == false) break;
+            }
+            
         }
         window.display();
     }
