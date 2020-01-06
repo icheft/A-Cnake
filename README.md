@@ -1,4 +1,4 @@
-# A Cnake
+# A CNAKE
 
 An uni year 1 final project for IM1003 Programming Design. The simple but fascinating game is developed all by ourselves with a little help from YouTube. Feel free to make it cooler. 
 

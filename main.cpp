@@ -20,7 +20,7 @@ int main()
     Image image;
     // setting
     srand(time(0));
-    RenderWindow window(VideoMode(WIDTH, HEIGHT), "A Cnake");
+    RenderWindow window(VideoMode(WIDTH, HEIGHT), "A CNAKE");
 
     Menu menu(window.getSize().x, window.getSize().y);
     Info info(window.getSize().x, window.getSize().y);
@@ -72,14 +72,17 @@ int main()
                 switch(event.key.code)
                 {
                     case Keyboard::Up:
+                    case Keyboard::Left:
                         menu.MoveUp();
                         pop.play();
                         break;
                     case Keyboard::Down:
+                    case Keyboard::Right:
                         menu.MoveDown();
                         pop.play();
                         break;
                     case Keyboard::Return:
+                    case Keyboard::Space:
                         switch(menu.GetPressedItem())
                         {
                         case 0:

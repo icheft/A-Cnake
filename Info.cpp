@@ -54,7 +54,7 @@ void Info::info_state()
     Sound leave;
     leave.setVolume(50);
     leave.setBuffer(bLeave);
-    RenderWindow window(VideoMode(WIDTH, HEIGHT), "A Cnake");
+    RenderWindow window(VideoMode(WIDTH, HEIGHT), "A CNAKE");
     // int pageIndex = 1;
     while(window.isOpen())
     {
@@ -71,15 +71,17 @@ void Info::info_state()
                 switch (event.key.code)
                 {
                 case Keyboard::Left:
+                case Keyboard::Up:
                     pop.play();
                     if (selectedPageIndex - 1 >= 0) selectedPageIndex--;
                     break;
                 case Keyboard::Right:
+                case Keyboard::Down:
                     pop.play();
-                    // nextPage();
                     if (selectedPageIndex + 1 < MAX_NUM_OF_PAGES) selectedPageIndex++;
                     break;
                 case Keyboard::Space:
+                case Keyboard::Return:
                     leave.play();
                     while (timer < limit)
                     {
@@ -97,68 +99,10 @@ void Info::info_state()
                 break;
             }
         }
-        // if(Keyboard::isKeyPressed(Keyboard::Left)) 
-        // {
-            
-        //     std::cout << "::" << selectedPageIndex << std::endl;
-        // }
-        // else if (Keyboard::isKeyPressed(Keyboard::Right))
-        // {
-        //     pop.play();
-        //     // nextPage();
-        //     if (selectedPageIndex + 1 < MAX_NUM_OF_PAGES) selectedPageIndex++;
-        // }
-        // else if (Keyboard::isKeyPressed(Keyboard::Space))
-        // {
-        //     leave.play();
-        //     while (timer < limit)
-        //     {
-        //         float time = clock.getElapsedTime().asSeconds();
-        //         clock.restart();
-        //         timer += time;
-        //     }
-                            
-        //     window.close();
-        // }
-        // std::cout << pageIndex << std::endl;
+        
         window.clear();
         draw(window, pages[selectedPageIndex]);
         window.display();
-
-    //     while (window.pollEvent(event))
-    //     {
-    //         switch (event.type)
-    //         {
-    //         case Event::KeyReleased:
-    //             switch(event.key.code)
-    //             {
-    //                 case Keyboard::Left:
-    //                     pop.play();
-    //                     pageIndex = prevPage();
-    //                     // draw(window, pages[pageIndex]);
-    //                     break;
-    //                 case Keyboard::Right:
-    //                     pop.play();
-    //                     pageIndex = nextPage();
-    //                     // window.clear();
-    //                     // draw(window, pages[pageIndex]);
-    //                     break;
-    //                 case Keyboard::Space:
-    //                     window.close();
-    //                     break;
-    //             }
-    //             break;
-    //         case Event::Closed:
-    //             window.close();
-    //             break;
-    //         }
-    //         // window.clear();
-    //         window.clear();
-    //         this->draw(window, pages[pageIndex]);
-    //         window.display();
-    // }
-    
-        // window.display();
     
     }
 }

@@ -762,7 +762,7 @@ void dead(int playerID, RenderWindow &window)
     // }
     // title.setFont(font);
     // title.setColor(Color(255, 211, 92, 250));
-    // // title.setString("A Cnake");
+    // // title.setString("A CNAKE");
     // title.setCharacterSize(60);
     // // title.setScale(Vector2f(2, 2));
     // title.setPosition(Vector2f(WIDTH / 2 - 270, HEIGHT / 2 - 100));
@@ -798,7 +798,7 @@ void dead(int playerID, RenderWindow &window)
 
 void run()
 {
-    RenderWindow window(VideoMode(WIDTH, HEIGHT), "A Cnake");
+    RenderWindow window(VideoMode(WIDTH, HEIGHT), "A CNAKE");
     s1.init1();
     s2.init2();
     b.init();

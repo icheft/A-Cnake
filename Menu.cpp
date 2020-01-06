@@ -20,7 +20,7 @@ Menu::Menu(float width, float height)
     
     title.setFont(font);
     title.setColor(Color(255, 211, 92, 250));
-    title.setString("A Cnake");
+    title.setString("A CNAKE");
     title.setCharacterSize(60);
     // title.setScale(Vector2f(2, 2));
     title.setPosition(Vector2f(width / 2 - 200, height / (MAX_NUMBER_OF_ITEMS + 2) * 1));
