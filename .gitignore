@@ -4,3 +4,6 @@ Snake.cpp
 Snake.hpp
 State.hpp
 Game.cpp
+.vscoode
+Info.cpp
+Info.hpp
