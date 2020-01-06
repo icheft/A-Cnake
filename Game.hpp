@@ -17,7 +17,7 @@ const int WIDTH = SIZE * W;
 const int HEIGHT = SIZE * H;
 
 
-RenderWindow window(VideoMode(WIDTH, HEIGHT), "A Cnake");
+
 const int SNAKE_MAX_LEN = 100;
 const int SNAKE_START_LEN = 4;
 
@@ -663,14 +663,68 @@ void Tick()
 int check(Snake s1, Snake s2)
 {
     int playerID = 0;
-    if (s1.len == 0) return playerID = 2;
+    if (s1.len == 0 && s2.len == 0) return playerID = 3;
     else if (s2.len == 0) return playerID = 1;
+    else if (s1.len == 0) return playerID = 2;
     else return playerID;
 
 }
 
+void dead(int playerID, RenderWindow &window)
+{
+    // Texture texture_p1win, texture_p2win, texture_tie;
+    // texture_p1win.loadFromFile("resources/images/player1wins.png");
+    // texture_p2win.loadFromFile("resources/images/player2wins.png");
+    // texture_tie.loadFromFile("resources/images/tie.png");
+
+    // Sprite p1(texture_p1win);
+    // Sprite p2(texture_p2win);
+    // Sprite tie(texture_tie);
+    Event event;
+    Text title;
+    Font font;
+    if (!font.loadFromFile("resources/fonts/prstartk.ttf"))
+    {
+        // handle error
+    }
+    title.setFont(font);
+    title.setColor(Color(255, 211, 92, 250));
+    // title.setString("A Cnake");
+    title.setCharacterSize(60);
+    // title.setScale(Vector2f(2, 2));
+    title.setPosition(Vector2f(WIDTH / 2 - 270, HEIGHT / 2 - 100));
+
+    window.clear(Color(128, 124, 115, 255));
+    
+    if (playerID == 1) {
+        title.setString("Player 1\n\n Wins!");
+    }
+    else if (playerID == 2) {
+        title.setString("Player 2\n\n Wins!");
+    }
+    else if (playerID == 3){
+        title.setString("Fair\n\n Play!");
+    }
+    // if (playerID == 1) window.draw(p1);
+    // else if (playerID == 2) window.draw(p2);
+    // else if (playerID == 3) window.draw(tie);
+    window.draw(title);
+    window.display();
+    Clock clock;
+    float timer = 0, limit = 1.5;
+    while (timer < limit)
+    {
+        float time = clock.getElapsedTime().asSeconds();
+        clock.restart();
+        timer += time;
+    }
+    // if (window.close();
+    
+}
+
 void run()
 {
+    RenderWindow window(VideoMode(WIDTH, HEIGHT), "A Cnake");
     s1.init1();
     s2.init2();
     b.init();
@@ -750,20 +804,27 @@ void run()
         bool pause = false;
         if(Keyboard::isKeyPressed(Keyboard::BackSpace)) pause = true;
             
-        
+        int checkFlag = check(s1, s2);
         if(timer > delay)
         {
             timer = 0;
             Tick();
-            int checkFlag = check(s1, s2);
-            if (checkFlag == 1) {
-                std::cout << "Player 1 wins" << std::endl;
-                pause = true;
+            if (checkFlag)
+            {
+                dead(checkFlag, window);
+                window.close();
+                // window.close();
             }
-            else if (checkFlag == 2) {
-                std::cout << "Player 2 wins" << std::endl;
-                pause = true;
-            }
+            // if (checkFlag == 1) {
+            //     std::cout << "Blue wins" << std::endl;
+            //     dead(checkFlag);
+            //     pause = true;
+            // }
+            // else if (checkFlag == 2) {
+            //     std::cout << "Yellow wins" << std::endl;
+            //     dead(checkFlag);
+            //     pause = true;
+            // }
         }
         
         window.clear();
@@ -824,7 +885,7 @@ void run()
         
         while (pause)
         {
-
+            static bool first_time = true;
             time = clock.getElapsedTime().asSeconds();
             clock.restart();
             timer += time;
@@ -837,6 +898,25 @@ void run()
                 timer = 0;
                 if (pause == false) break;
             }
+
+            // if (checkFlag && first_time) 
+            // {
+            //     delay += 5;
+            //     first_time = false;
+            // }
+            // if (checkFlag && timer > delay) 
+            // {   
+            //     // std::cout << "Game ! " << cnt++ << std::endl;
+            //     window.close();
+            //     // if(checkFlag == 1) {
+            //     //     window.close();
+            //     // }
+            //     // else if (checkFlag == 2) {
+            //     //     window.close();
+            //     // }
+                    
+            // }
+            // if(timer > delay) timer = 0;
             
         }
         window.display();

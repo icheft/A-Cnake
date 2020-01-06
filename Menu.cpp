@@ -37,7 +37,7 @@ Menu::~Menu()
 
 void Menu::draw(RenderWindow &window)
 {
-    window.clear(Color(128, 124, 115, 255));
+    window.clear(Color(64, 75, 104, 255));
     window.draw(title);
     for (int i = 0; i < MAX_NUMBER_OF_ITEMS; i++)
     {

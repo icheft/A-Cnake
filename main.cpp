@@ -46,8 +46,9 @@ menuLabel:
                         {
                         case 0:
                             std::cout << "Play button has been pressed" << std::endl;
-                            window.close();
+                            window.setVisible(false);
                             run();
+                            window.setVisible(true);
                             break;
                         case 1:
                             window.close();
