@@ -1,5 +1,6 @@
 #pragma once
 #include <SFML/Graphics.hpp>
+#include <SFML/Audio.hpp>
 #include <ctime>
 #include <iostream>
 // #include "Snake.hpp"
@@ -225,6 +226,44 @@ void Brick::init()
 
 void Tick()
 {
+    static int tickCnt = 0;
+    static SoundBuffer b1, b2, b3, b4, b5, b6, b7, b8;
+    static Sound explosion, wallHit, drink1, drink2, drink3, potionCreated, water, collision;
+    if (tickCnt == 0)
+    {
+        if (!b1.loadFromFile("resources/audio/explode.wav")) return;
+        explosion.setVolume(50);
+        explosion.setBuffer(b1);
+        if (!b2.loadFromFile("resources/audio/wall-hit.wav")) return;
+        wallHit.setVolume(50);
+        wallHit.setBuffer(b2);
+
+        if (!b3.loadFromFile("resources/audio/potion-drinking.wav")) return;
+        potionCreated.setVolume(50);
+        potionCreated.setBuffer(b3);
+        if (!b4.loadFromFile("resources/audio/water.wav")) return;
+        water.setVolume(90);
+        water.setBuffer(b4);
+        if (!b5.loadFromFile("resources/audio/collision.wav")) return;
+        collision.setVolume(90);
+        collision.setBuffer(b5);
+        if (!b6.loadFromFile("resources/audio/drink1.wav")) return;
+        drink1.setVolume(90);
+        drink1.setBuffer(b6);
+        if (!b7.loadFromFile("resources/audio/drink2.wav")) return;
+        drink2.setVolume(90);
+        drink2.setBuffer(b7);
+        if (!b8.loadFromFile("resources/audio/drink3.wav")) return;
+        drink3.setVolume(90);
+        drink3.setBuffer(b8);
+        
+
+        
+
+        tickCnt++;
+    }
+    
+    
     for(int i = s1.len; i > 0; i--)
     {
         s1.x[i] = s1.x[i - 1];
@@ -253,6 +292,7 @@ void Tick()
         if((s1.x[0] == f.x[j]) && (s1.y[0] == f.y[j]))
         {
             s1.len++;
+            drink1.play();
             // generate new fruit
             bool overlap = true;
             while(overlap)
@@ -296,6 +336,7 @@ void Tick()
         if((s2.x[0] == f.x[j]) && (s2.y[0] == f.y[j]))
         {
             s2.len++;
+            drink1.play();
             // generate new fruit
             bool overlap = true;
             while(overlap)
@@ -340,6 +381,7 @@ void Tick()
         if((s1.x[0] == f2.x[j]) && (s1.y[0] == f2.y[j]))
         {
             s1.len++;
+            drink2.play();
             // generate new fruit
             bool overlap = true;
             while(overlap)
@@ -383,6 +425,7 @@ void Tick()
         if((s2.x[0] == f2.x[j]) && (s2.y[0] == f2.y[j]))
         {
             s2.len++;
+            drink2.play();
             // generate new fruit2
             bool overlap = true;
             while(overlap)
@@ -424,7 +467,7 @@ void Tick()
     // eat fruit3
     if((s1.x[0] == f3.x) && (s1.y[0] == f3.y))
     {
-        s1.len++;
+        s1.len++;drink3.play();
         // generate new fruit3
         bool overlap = true;
         while(overlap)
@@ -465,6 +508,7 @@ void Tick()
     if((s2.x[0] == f3.x) && (s2.y[0] == f3.y))
     {
         s2.len++;
+        drink3.play();
         // generate new fruit3
         bool overlap = true;
         while(overlap)
@@ -562,6 +606,7 @@ void Tick()
             b.x[i] = -1;
             b.y[i] = -1;
             bomb_created = false;
+            explosion.play();
         }
     }
     for (int i = 0;i < b.index;i++)
@@ -575,6 +620,7 @@ void Tick()
             b.x[i] = -1;
             b.y[i] = -1;
             bomb_created = false;
+            explosion.play();
         }
     }
     // collided with water
@@ -587,6 +633,8 @@ void Tick()
         /* else */ if ((s1.x[0] == w.x[i]) && (s1.y[0] == w.y[i])) 
         {
             s1.len = 0;
+            water.play();
+            // collision.setVolume(20);
         }
     }
     for(int i = 0;i < 25;i++)
@@ -594,6 +642,8 @@ void Tick()
         if((s2.x[0] == w.x[i]) && (s2.y[0] == w.y[i]))
         {
             s2.len = 0;
+            water.play(); 
+            // collision.setVolume(20);
         }
     }
     // collided with brick
@@ -602,6 +652,7 @@ void Tick()
         if((s1.x[0] == br.x[i]) && (s1.y[0] == br.y[i]))
         {
             s1.len = 0;
+            wallHit.play();
         }
     }
     for(int i = 0;i < 36;i++)
@@ -609,6 +660,7 @@ void Tick()
         if((s2.x[0] == br.x[i]) && (s2.y[0] == br.y[i]))
         {
             s2.len = 0;
+            wallHit.play();
         }
     }
     // over map size
@@ -625,17 +677,29 @@ void Tick()
     // self-collision
     for(int i = 1; i < s1.len; i++)
         if(s1.x[0] == s1.x[i] && s1.y[0] == s1.y[i])
-            s1.len = 0;
+            {
+                s1.len = 0;
+                collision.play();
+            }
     for(int i = 1; i < s2.len; i++)
         if(s2.x[0] == s2.x[i] && s2.y[0] == s2.y[i])
-            s2.len = 0;
+            {
+                s2.len = 0;
+                collision.play();
+            }
     // mutual collision
     for(int i = 1; i < s2.len; i++)
         if(s1.x[0] == s2.x[i] && s1.y[0] == s2.y[i])
-            s1.len = 0;
+            {
+                s1.len = 0;
+                collision.play();
+            }
     for(int i = 1; i < s1.len; i++)
         if(s2.x[0] == s1.x[i] && s2.y[0] == s1.y[i])
-            s2.len = 0;
+            {
+                s2.len = 0;
+                collision.play();
+            }
     // 頭撞頭
     if(s1.x[0] == s2.x[0] && s1.y[0] == s2.y[0])
     {
@@ -649,6 +713,7 @@ void Tick()
                 // 平手
                 s1.len = 0;
                 s2.len = 0;
+                collision.play();
             }
         }
         // 側面撞頭
@@ -656,6 +721,7 @@ void Tick()
         {
             s1.len = 0;
             s2.len = 0;
+            collision.play();
         }
     }
 }
@@ -672,6 +738,13 @@ int check(Snake s1, Snake s2)
 
 void dead(int playerID, RenderWindow &window)
 {
+    SoundBuffer buffer;
+     if (!buffer.loadFromFile("resources/audio/cheering.wav")) return;
+
+    Sound cheer;
+    cheer.setVolume(50);
+    cheer.setBuffer(buffer);
+    cheer.play();
     Texture texture_p1win, texture_p2win, texture_tie;
     texture_p1win.loadFromFile("resources/images/player1wins.png");
     texture_p2win.loadFromFile("resources/images/player2wins.png");
@@ -760,6 +833,14 @@ void run()
     float timer = 0, delay = 0.07; // adjusting delay will affect the speed // default = 0.07
     s1.bomb = false;
     s2.bomb = false;
+    SoundBuffer buffer;
+    if (!buffer.loadFromFile("resources/audio/bomb-planted.wav")) return;
+    Sound bombPlanted;
+    bombPlanted.setVolume(50);
+    bombPlanted.setBuffer(buffer);
+
+
+    
     while(window.isOpen())
     {
         float time = clock.getElapsedTime().asSeconds();
@@ -797,10 +878,17 @@ void run()
         
         if(Keyboard::isKeyPressed(Keyboard::L))
             if(b.x[b.index] == -1 && b.y[b.index] == -1)
+            {
+                bombPlanted.play();
                 s1.bomb = true;
+            }
+                
         if(Keyboard::isKeyPressed(Keyboard::LShift))
             if(b.x[b.index] == -1 && b.y[b.index] == -1)
+            {
+                bombPlanted.play();
                 s2.bomb = true;
+            }
         // ===== until here =====
         bool pause = false;
         if(Keyboard::isKeyPressed(Keyboard::BackSpace)) pause = true;

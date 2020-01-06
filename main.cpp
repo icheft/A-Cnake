@@ -1,3 +1,4 @@
+#include <SFML/Audio.hpp>
 #include <SFML/Graphics.hpp>
 #include <iostream>
 #include "Menu.hpp"
@@ -21,6 +22,11 @@ int main()
     RenderWindow window(VideoMode(WIDTH, HEIGHT), "A Cnake");
 
     Menu menu(window.getSize().x, window.getSize().y);
+    Music music;
+    if (!music.openFromFile("resources/audio/opening-funky.ogg"))
+        return -1; // error
+    music.setVolume(20);
+    music.play();
     
 
 menuLabel:
@@ -46,6 +52,7 @@ menuLabel:
                         {
                         case 0:
                             std::cout << "Play button has been pressed" << std::endl;
+                            music.setVolume(10);
                             window.setVisible(false);
                             run();
                             window.setVisible(true);
