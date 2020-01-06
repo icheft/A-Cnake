@@ -664,15 +664,15 @@ void Tick()
         }
     }
     // over map size
-    if(s1.x[0] > W) s1.x[0] = 0;
-    if(s1.x[0] < 0) s1.x[0] = W;
-    if(s1.y[0] > H) s1.y[0] = 0;
-    if(s1.y[0] < 0) s1.y[0] = H;
+    if(s1.x[0] >= W) s1.x[0] = 0;
+    if(s1.x[0] < 0) s1.x[0] = W - 1;
+    if(s1.y[0] >= H) s1.y[0] = 0;
+    if(s1.y[0] < 0) s1.y[0] = H - 1;
     
-    if(s2.x[0] > W) s2.x[0] = 0;
-    if(s2.x[0] < 0) s2.x[0] = W;
-    if(s2.y[0] > H) s2.y[0] = 0;
-    if(s2.y[0] < 0) s2.y[0] = H;
+    if(s2.x[0] >= W) s2.x[0] = 0;
+    if(s2.x[0] < 0) s2.x[0] = W - 1;
+    if(s2.y[0] >= H) s2.y[0] = 0;
+    if(s2.y[0] < 0) s2.y[0] = H - 1;
     
     // self-collision
     for(int i = 1; i < s1.len; i++)
@@ -862,8 +862,8 @@ void run()
         
         // should be modified
         if(Keyboard::isKeyPressed(Keyboard::Left))
-            if(s1.dir != right) s1.dir = left;
-        if(Keyboard::isKeyPressed(Keyboard::Right))
+        {if(s1.dir != right) s1.dir = left;}
+        else if(Keyboard::isKeyPressed(Keyboard::Right))
             if(s1.dir != left) s1.dir = right;
         if(Keyboard::isKeyPressed(Keyboard::Up))
             if(s1.dir != down) s1.dir = up;
@@ -872,8 +872,8 @@ void run()
         
         
         if(Keyboard::isKeyPressed(Keyboard::A))
-            if(s2.dir != right) s2.dir = left;
-        if(Keyboard::isKeyPressed(Keyboard::D))
+        {if(s1.dir != right) s1.dir = left;}
+        else if(Keyboard::isKeyPressed(Keyboard::D))
             if(s2.dir != left) s2.dir = right;
         if(Keyboard::isKeyPressed(Keyboard::W))
             if(s2.dir != down) s2.dir = up;
