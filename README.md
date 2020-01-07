@@ -11,13 +11,14 @@ The project is built for learning purpose - mainly `C++`, `SFML`, `Game Developi
 
 ## How to Play
 Two pre-set snakes are for you (and your friend) to play:
+
 ![blue snake](resources/images/blue.png)
 ![yellow-snake](resources/images/yellow.png)
 
 Instructions (can be seen in the game itself):
 ![info page1](resources/images/instra1.png)
-![info page2](resources/images/instra2.png)
-![info page3](resources/images/instra3.png)
+![info page2](resources/images/instra2.PNG)
+![info page3](resources/images/instra3.PNG)
 
 Demo:
 ![start](resources/images/beginning-window.png)
