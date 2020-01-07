@@ -2,12 +2,30 @@
 
 An uni year 1 final project for IM1003 Programming Design. The simple but fascinating game is developed all by ourselves with a little help from YouTube. Feel free to make it cooler. 
 
-The entire project is built natively on macOS with some *terminal commands* and *Visual Studio Code* (that's why there's a `.vscode` setting folder and a `acnake.code-workspace` for opening a workspace in VS Code.) In fact, any text editors can do the job. 
+The entire project is built natively on macOS with some *terminal commands* and *Visual Studio Code* (that's why there's a `.vscode` setting folder and a `acnake.code-workspace` for opening a workspace in VS Code.) In fact, any text editors can do the job. `SFML` library is required to build this game. 
+
 
 Developing this project does not require any IDE nor Windows (you can definitely run it on Windows though). Building this project is easy (not sure for Windows, tell us after you successfully build!) on any platform.
 
+## How to Play
+Two pre-set snakes are for you (and your friend) to play:
+![blue snake](resources/images/blue.png)
+![yellow-snake](resources/images/yellow.png)
+
+Instructions (can be seen in the game itself):
+![info page1](resources/images/instra1.png)
+![info page2](resources/images/instra2.png)
+![info page3](resources/images/instra3.png)
+
+Demo:
+![start](resources/images/beginning-window.png)
+![play](resources/images/gameplay.png)
+
+See demo on YouTube [here](https://youtu.be/ZDKSKEFhWOg).
+
+
 ## To Do
-### Current Version Game (v1): 
+### Current Version Game (v1.4): 
 - [ ] 1. Separate main.cpp into different classes
 - [ ] 2. Minor bugs 
 
@@ -42,10 +60,10 @@ It should create a folder name **snake**.
 
 Go to your project directory by typing `cd snake`, then type in `make`.
 
-You should be able to run the game by typing `./A\ Cnake`. 
+You should be able to run the game by typing `./A\ Cnake`. Or, you can follow the instructions shown on your terminal prompt. 
 
 ### Windows 
-
+:) No offense. But it should be easy :)
 
 ## Archive
 - [x] 1. win, lose, 平手, play again windows
