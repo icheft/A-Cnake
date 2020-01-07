@@ -992,10 +992,11 @@ void run()
             if(Keyboard::isKeyPressed(Keyboard::BackSpace)){
                 pause = false;
                 pop.play();
+                std::cout << "Game paused" << std::endl;
             }
             if(timer > delay)
             {
-                std::cout << "Game paused " << cnt++ << std::endl;
+                // std::cout << "Game paused " << cnt++ << std::endl;
                 timer = 0;
                 if (pause == false) break;
             }
