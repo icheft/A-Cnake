@@ -26,7 +26,12 @@ Demo:
 ![start](resources/images/beginning-window.png)
 ![play](resources/images/gameplay.png)
 
-See demo on YouTube [here](https://youtu.be/ZDKSKEFhWOg).
+See demo on YouTube:
+<!-- blank line -->
+<figure class="video_container">
+  <iframe width="560" height="315" src="https://www.youtube.com/embed/ZDKSKEFhWOg" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+</figure>
+<!-- blank line -->
 
 
 ## To Do

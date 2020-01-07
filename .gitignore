@@ -4,3 +4,5 @@ Snake.cpp
 Snake.hpp
 State.hpp
 Game.cpp
+.vscode
+acnake.code-workspace
