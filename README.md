@@ -84,3 +84,14 @@ You should be able to run the game by typing `./A\ Cnake`. Or, you can follow th
 + Pony
 + Watermelon Man
 + Other resources from the Internet (Mostly from [SFML-dev.org](https://www.sfml-dev.org))
+
+
+## Credits
+Background music:
+► Music Credit: SUNDANCE
+Track Name: "Perséphone - Retro Funky (SUNDANCE remix)"
+Music By: SUNDANCE @ [https://soundcloud.com/sundancemusic](https://soundcloud.com/sundancemusic)
+The SUNDANCE Official Website is HERE - [http://lefthandmusic.fr/](http://lefthandmusic.fr/)
+Follow SUNDANCE on BandCamp: [https://sundancemusic.bandcamp.com/](https://sundancemusic.bandcamp.com/)
+License for commercial use: Creative Commons Attribution 3.0 Unported (CC BY 3.0) [https://creativecommons.org/licenses/](https://creativecommons.org/licenses/)...
+Music promoted by NCM [https://goo.gl/fh3rEJ](https://goo.gl/fh3rEJ)
