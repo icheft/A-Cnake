@@ -1,11 +1,13 @@
 # A CNAKE
 
-An uni year 1 final project for IM1003 Programming Design. The simple but fascinating game is developed all by ourselves with a little help from YouTube. Feel free to make it cooler. 
+An uni year 1 final project for IM1003 Programming Design at National Taiwan University. The simple but fascinating game is developed all by ourselves with a little help from YouTube. Feel free to make it cooler. 
 
 The entire project is built natively on macOS with some *terminal commands* and *Visual Studio Code* (that's why there's a `.vscode` setting folder and a `acnake.code-workspace` for opening a workspace in VS Code.) In fact, any text editors can do the job. `SFML` library is required to build this game. 
 
 
 Developing this project does not require any IDE nor Windows (you can definitely run it on Windows though). Building this project is easy (not sure for Windows, tell us after you successfully build!) on any platform.
+
+The project is built for learning purpose - mainly `C++`, `SFML`, `Game Developing`. I haven't decided which license to use yet. But feel free to modify the code and submit merge requests for better gaming experience.
 
 ## How to Play
 Two pre-set snakes are for you (and your friend) to play:
