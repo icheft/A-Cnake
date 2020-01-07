@@ -7,7 +7,7 @@ The entire project is built natively on macOS with some *terminal commands* and 
 
 Developing this project does not require any IDE nor Windows (you can definitely run it on Windows though). Building this project is easy (not sure for Windows, tell us after you successfully build!) on any platform.
 
-The project is built for learning purpose - mainly `C++`, `SFML`, `Game Developing`. I haven't decided which license to use yet. But feel free to modify the code and submit merge requests for better gaming experience.
+The project is built for learning purpose - mainly `C++`, `SFML`, `Game Developing`, `git`. I haven't decided which license to use yet. But feel free to modify the code and submit merge requests for better gaming experience.
 
 ## How to Play
 Two pre-set snakes are for you (and your friend) to play:
