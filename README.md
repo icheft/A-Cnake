@@ -2,25 +2,26 @@
 
 An uni year 1 final project for IM1003 Programming Design. The simple but fascinating game is developed all by ourselves with a little help from YouTube. Feel free to make it cooler. 
 
+The entire project is built natively on macOS with some *terminal commands* and *Visual Studio Code* (that's why there's a `.vscode` setting folder and a `acnake.code-workspace` for opening a workspace in VS Code.) In fact, any text editors can do the job. 
+
+Developing this project does not require any IDE nor Windows (you can definitely run it on Windows though). Building this project is easy (not sure for Windows, tell us after you successfully build!) on any platform.
+
 ## To Do
-### Main Game (v1): 
+### Current Version Game (v1): 
 - [ ] 1. Separate main.cpp into different classes
-- [ ] 2. Instruction window
-- [x] 3. win, lose, 平手, play again windows
-    + Add player 1 (blue snake) wins
-    + Add player 2 (yellow snake) wins
-    + Add Fair play
-    + Play again button(?)
-- [ ] 4. Add sound effects
-- [x] 5. Add pause state (no beautiful UI though, the frame will be paused however.)
+- [ ] 2. Minor bugs 
+
 
 ### v2 or later: 
-1. Settings
-   1. sound on/off
-   2. speed
-2. place bomb, and your lenth will decrease
-3. Single player mode
-4. connected through server
+- [ ] 1. Settings
+   - [ ] 1. sound on/off
+   - [ ] 2. speed
+- [ ] 2. place bomb, and your lenth will decrease
+- [ ] 3. Single player mode
+- [ ] 4. connected through server
+- [ ] 5. Even more players
+- [ ] 6. Shoot from mouth lol
+- [ ] 7. Speed up
 
 
 ## Build
@@ -41,7 +42,22 @@ It should create a folder name **snake**.
 
 Go to your project directory by typing `cd snake`, then type in `make`.
 
-You should be able to run the game by typing `./game`. 
+You should be able to run the game by typing `./A\ Cnake`. 
 
 ### Windows 
 
+
+## Archive
+- [x] 1. win, lose, 平手, play again windows
+    + Add player 1 (blue snake) wins
+    + Add player 2 (yellow snake) wins
+    + Add Fair play
+    + Play again button(?)
+- [x] 2. Add sound effects
+- [x] 3. Add pause state (no beautiful UI though, the frame will be paused however.)
+- [x] 4. Instruction window
+
+## Contributors
++ Pony
++ Watermelon Man
++ Other resources from the Internet (Mostly from [SFML-dev.org](https://www.sfml-dev.org))
