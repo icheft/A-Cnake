@@ -1,5 +1,5 @@
 # A CNAKE
-
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 An uni year 1 final project for IM1003 Programming Design at National Taiwan University. The simple but fascinating game is developed all by ourselves with a little help from YouTube. Feel free to make it cooler. 
 
 The entire project is built natively on macOS with some *terminal commands* and *Visual Studio Code* (that's why there's a `.vscode` setting folder and a `acnake.code-workspace` for opening a workspace in VS Code.) In fact, any text editors can do the job. `SFML` library is required to build this game. 
