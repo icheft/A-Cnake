@@ -90,7 +90,7 @@ int main()
                             music.setVolume(10);
                             window.setVisible(false);
                             enter.play();
-                            while (timer < limit)
+                            while (timer < limit + 0.1)
                             {
                                 float time = clock.getElapsedTime().asSeconds();
                                 clock.restart();
