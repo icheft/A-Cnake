@@ -1,46 +1,43 @@
 # run: objects
 
-run: main.o Menu.o Info.o Game.o Snake.o Props.o
-	@echo 🏗 [ 90%]  Buliding Game
-	@g++ -w main.o Menu.o Info.o Game.o Snake.o Props.o -o A\ Cnake -lsfml-window -lsfml-graphics -lsfml-system -lsfml-audio
-	@sleep .3
-	@echo 🏗 [ 99%]  Linking A Cnake!
+run: dir src/main.o src/Menu.o src/Info.o src/Game.o src/Snake.o src/Props.o
+	@echo 🏗 [ 97%]  Linking A Cnake!
+	@g++ -w obj/main.o obj/Menu.o obj/Info.o obj/Game.o obj/Snake.o obj/Props.o -o A\ Cnake -lsfml-window -lsfml-graphics -lsfml-system -lsfml-audio
 	@sleep .2
 	@echo 🍺 [100%]  Cheers. Success! Built target A Cnake.
 	@echo
 	@echo 👾 Type \"./A\ Cnake\" to start the game. Have fun!
+	@echo 💬 \(Or type \"make clean\" to clean the project\)
 
-# objects: *.cpp *.hpp
-# 	@g++ -w *.cpp -c
+dir:
+	@if [ ! -d "obj" ]; then mkdir obj; fi
 
-main.o: main.cpp
-	@echo 🏗 [ 25%]  Building main.cpp
-	@g++ -w main.cpp -c
-	@sleep .15
+src/main.o: src/main.cpp
+	@echo 🏗 [ 17%]  Building main.cpp
+	@g++ -w src/main.cpp -o obj/main.o -c
 
-Game.o: Game.hpp Game.cpp
-	@echo 🏗 [ 80%]  Building Game.cpp
-	@g++ Game.cpp -c
-	@sleep .15
+src/Menu.o: src/Menu.cpp src/Menu.hpp
+	@echo 🏗 [ 34%] Building Menu.cpp
+	@g++ -w src/Menu.cpp -o obj/Menu.o -c
 
-Snake.o: Snake.hpp Snake.cpp
-	@g++ Snake.cpp -c
+src/Info.o: src/Info.cpp src/Info.hpp
+	@echo 🏗 [ 51%]  Building Info.cpp
+	@g++ -w src/Info.cpp -o obj/Info.o -c
 
-Props.o: Props.cpp Props.hpp
-	@g++ Props.cpp -c
+src/Game.o: src/Game.hpp src/Game.cpp
+	@echo 🏗 [ 67%]  Building Game.cpp
+	@g++ -w src/Game.cpp -o obj/Game.o -c
 
-Menu.o: Menu.cpp Menu.hpp
-	@echo 🏗 [ 50%] Building Menu.cpp
-	@g++ -w Menu.cpp -c
-	@sleep .15
+src/Snake.o: src/Snake.hpp src/Snake.cpp
+	@echo 🏗 [ 80%]  Building Snake.cpp
+	@g++ src/Snake.cpp -o obj/Snake.o -c
 
-Info.o: Info.cpp Info.hpp
-	@echo 🏗 [ 75%]  Building Info.cpp
-	@g++ -w Info.cpp -c
-	@sleep .15
+src/Props.o: src/Props.cpp src/Props.hpp
+	@echo 🏗 [ 93%]  Building Props.cpp
+	@g++ src/Props.cpp -o obj/Props.o -c
 
 clean:
 	@echo 🧹  [ 70%]  Removing redundant files.
-	@rm -rf *.o A\ Cnake
+	@rm -rf obj A\ Cnake
 	@sleep .15
 	@echo ✓   [100%] Done.
