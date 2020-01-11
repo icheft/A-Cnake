@@ -5,3 +5,4 @@ const int WIDTH = SIZE * W;
 const int HEIGHT = SIZE * H;
 const int SNAKE_MAX_LEN = 100;
 const int SNAKE_START_LEN = 4;
+enum direction {down, left, right, up};

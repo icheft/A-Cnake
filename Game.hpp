@@ -2,68 +2,11 @@
 #include <SFML/Graphics.hpp>
 #include <SFML/Audio.hpp>
 #include "Config.hpp"
+#include "Snake.hpp"
+#include "Props.hpp"
 #include <ctime>
 #include <iostream>
-
 using namespace sf;
-enum direction {down, left, right, up};
-
-struct Snake
-{
-    int x[SNAKE_MAX_LEN];
-    int y[SNAKE_MAX_LEN];
-    int dir;
-    int len;
-    void init1();
-    void init2();
-    bool bomb;
-};
-
-struct Water
-{
-    int x[25];
-    int y[25];
-    void init();
-};
-
-
-struct Portion_1stType
-{
-    int x[3];
-    int y[3];
-    void init();
-};
-
-
-struct Portion_2ndType
-{
-    int x[2];
-    int y[2];
-    void init();
-};
-
-
-struct Portion_3rdType
-{
-    int x;
-    int y;
-    void init();
-};
-
-struct Bomb
-{
-    int x[300];
-    int y[300];
-    int index;
-    void init();
-};
-
-struct Brick
-{
-    int x[36];
-    int y[36];
-    void init();
-};
 
 
 class Game
