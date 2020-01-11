@@ -7,13 +7,6 @@
 #include <ctime>
 using namespace sf;
 
-// const int SIZE = 15; // default: 15 --> Do not modify
-// const int W = 60, H = 50;
-// const int WIDTH = SIZE * W;
-// const int HEIGHT = SIZE * H;
-
-
-
 
 int main()
 {
@@ -24,6 +17,8 @@ int main()
 
     Menu menu(window.getSize().x, window.getSize().y);
     Info info(window.getSize().x, window.getSize().y);
+    Game game;
+
     Music music;
     if (!music.openFromFile("resources/audio/opening-funky.ogg"))
         return -1; // error
@@ -56,14 +51,12 @@ int main()
     option.setVolume(50);
     option.setBuffer(bOption);
 
-// menuLabel:
     while(window.isOpen())
     {
         Event event;
         Clock clock;
         float timer = 0, limit = 0.3;
     
-
         while (window.pollEvent(event))
         {
             switch (event.type)
@@ -96,7 +89,7 @@ int main()
                                 clock.restart();
                                 timer += time;
                             }
-                            run();
+                            game.run();
                             music.setVolume(20);
                             window.setVisible(true);
                             break;
@@ -122,14 +115,7 @@ int main()
                                 timer += time;
                             }
                             window.close();
-                            // if (!(image.loadFromFile("resources/images/yellow.png")))
-                            //         std::cout << "Cannot load image";
-                            // if (Keyboard::isKeyPressed(Keyboard::Space)) /* goto menuLabel */ std::cout << "hello" << std::endl;
-                            // to be modified
                             break;
-                        // case 2:
-                        //     window.close();
-                        //     break;
                         }
                         break;
                 }
