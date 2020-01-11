@@ -1,5 +1,3 @@
-# run: objects
-
 run: main.o Menu.o Info.o Game.o Snake.o Props.o
 	@echo 🏗 [ 90%]  Buliding Game
 	@g++ -w main.o Menu.o Info.o Game.o Snake.o Props.o -o A\ Cnake -lsfml-window -lsfml-graphics -lsfml-system -lsfml-audio
@@ -9,9 +7,6 @@ run: main.o Menu.o Info.o Game.o Snake.o Props.o
 	@echo 🍺 [100%]  Cheers. Success! Built target A Cnake.
 	@echo
 	@echo 👾 Type \"./A\ Cnake\" to start the game. Have fun!
-
-# objects: *.cpp *.hpp
-# 	@g++ -w *.cpp -c
 
 main.o: main.cpp
 	@echo 🏗 [ 25%]  Building main.cpp

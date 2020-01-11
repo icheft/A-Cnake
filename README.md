@@ -72,6 +72,9 @@ Go to your project directory by typing `cd snake`, then type in `make`.
 
 You should be able to run the game by typing `./A\ Cnake`. Or, you can follow the instructions shown on your terminal prompt. 
 
+#### Clean
+Type `make clean` to clean the project folder. 
+
 ### Windows 
 :) No offense. But it should be easy :)
 
