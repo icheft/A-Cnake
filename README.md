@@ -22,17 +22,11 @@ Instructions (can be seen in the game itself):
 ![info page2](resources/images/instra2.PNG)
 ![info page3](resources/images/instra3.PNG)
 
-Demo:
+Demo:  
 ![start](resources/images/beginning-window.png)
 ![play](resources/images/gameplay.png)
 
-See demo on YouTube:
-<!-- blank line -->
-<figure class="video_container">
-  <iframe src="https://www.youtube.com/embed/ZDKSKEFhWOg" frameborder="0" allowfullscreen="true"> </iframe>
-</figure>
-<!-- blank line -->
-
+Or you can watch the demo on YouTube [here](https://youtu.be/ZDKSKEFhWOg).
 
 ## To Do
 ### Current Version Game (v1.5): 
