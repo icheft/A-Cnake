@@ -35,9 +35,8 @@ See demo on YouTube:
 
 
 ## To Do
-### Current Version Game (v1.4): 
-- [ ] 1. Separate main.cpp into different classes
-- [ ] 2. Minor bugs 
+### Current Version Game (v1.5): 
+- [ ] 1. Minor bugs 
 
 
 ### v2 or later: 
@@ -89,6 +88,7 @@ To really remove `A Cnake` game from your device, type `make remove`.
 - [x] 2. Add sound effects
 - [x] 3. Add pause state (no beautiful UI though, the frame will be paused however.)
 - [x] 4. Instruction window
+- [x] 5. Separate main.cpp into different classes
 
 ## Contributors
 + Pony
