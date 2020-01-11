@@ -1,4 +1,5 @@
 A\ Cnake
 *.o
 .vscode
+obj
 acnake.code-workspace
