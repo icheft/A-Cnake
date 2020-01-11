@@ -68,9 +68,14 @@ Download this repository, copy and paste `git clone https://gitlab.com/icheft/sn
 
 It should create a folder name **snake**.
 
-Go to your project directory by typing `cd snake`, then type in `make`.
+Go to your project directory by typing `cd snake`, then type in `make`. It will create an extra `obj` folder to store objects created by the system. You may ignore the folder. 
 
 You should be able to run the game by typing `./A\ Cnake`. Or, you can follow the instructions shown on your terminal prompt. 
+
+#### Clean
+To clean up the project folder, type `make clean`; such will delete the `obj` folder, but won't erase the `A Cnake` executable. 
+
+To really remove `A Cnake` game from your device, type `make remove`. 
 
 ### Windows 
 :) No offense. But it should be easy :)
