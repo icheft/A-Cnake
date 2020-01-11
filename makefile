@@ -37,7 +37,16 @@ src/Props.o: src/Props.cpp src/Props.hpp
 	@g++ src/Props.cpp -o obj/Props.o -c
 
 clean:
-	@echo 🧹  [ 70%]  Removing redundant files.
-	@rm -rf obj A\ Cnake
+	@echo 🧹  [ 70%]  Cleaning objects.
+	@rm -rf obj
 	@sleep .15
+	@echo ✓   [100%] Done.
+
+remove: clean
+	@while [ -z "$$CONTINUE" ]; do \
+        read -r -p "Rly want to remove the A Cnake game executable? [y/N]: " CONTINUE; \
+    done ; \
+    [ $$CONTINUE = "y" ] || [ $$CONTINUE = "Y" ] || (echo "👌  Exiting."; exit 1;)
+	@echo 🧹  [ 80%]  Removing A Cnake game.
+	@rm -rf A\ Cnake
 	@echo ✓   [100%] Done.
